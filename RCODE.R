@@ -10,7 +10,7 @@ model = glm(Admit ~ Gender + Dept,
               family = binomial)
 exp(cbind(OR = coef(model), confint.default(model)))
 
-ucb$pred_prob <- predict(model1, type = "response")
+ucb$pred_prob <- predict(model, type = "response")
 head(ucb)
 
 library(ggplot2)

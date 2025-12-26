@@ -33,15 +33,15 @@ head(ucb)
 
 ```{r logistic}
 # Example: Multiple Binary Logistic Regression
-model1 <- glm(Admit ~ Gender + Dept, family = binomial, data = ucb, weights = Freq)
-summary(model1)
-exp(cbind(OR = coef(model1), confint.default(model1)))
+model <- glm(Admit ~ Gender + Dept, family = binomial, data = ucb, weights = Freq)
+summary(model)
+exp(cbind(OR = coef(model), confint.default(model)))
 ```
 
 ## We see that GenderFemale and Dept B do not appear to be significant predictors, as 1 lies within their confidence intervals, which indicates they are not statistically significant. Their odds ratios are near 1, which means these have a small effect
 
 ```{r predicted probability}
-ucb$pred_prob <- predict(model1, type = "response")
+ucb$pred_prob <- predict(model, type = "response")
 head(ucb)
 
 library(ggplot2)
