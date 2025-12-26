@@ -15,6 +15,6 @@ head(ucb)
 
 library(ggplot2)
 
-ggplot(ucb, aes(x = Dept, y = pred_prob, color = Gender)) +
+ggplot(ucb, aes(x = Dept, y = pred_prob, color = Gender))+
   geom_point(size = 3) +
   labs(y = "Predicted Probability of Admission")
