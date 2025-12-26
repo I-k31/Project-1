@@ -4,8 +4,8 @@ head(ucb)
 
 ucb$Admit=relevel(ucb$Admit, ref = "Rejected")
 
-model1 = glm(Admit ~ Gender + Dept,
+model = glm(Admit ~ Gender + Dept,
               data = ucb,
               weights = Freq,
               family = binomial)
-exp(cbind(OR = coef(model1), confint.default(model1)))
+exp(cbind(OR = coef(model1), confint.default(model)))
