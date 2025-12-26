@@ -21,9 +21,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
-This markdown file utilizes multiple binary logistic regression, using "rejected" as a reference angle
+## This markdown file utilizes multiple binary logistic regression, using "rejected" as the reference variable
 
 ```{r data, include=FALSE}
 # Load data
@@ -41,3 +39,14 @@ exp(cbind(OR = coef(model1), confint.default(model1)))
 ```
 
 ## We see that GenderFemale and Dept B do not appear to be significant predictors, as 1 lies within their confidence intervals, which indicates they are not statistically significant. Their odds ratios are near 1, which means these have a small effect
+
+```{r predicted probability}
+ucb$pred_prob <- predict(model1, type = "response")
+head(ucb)
+
+library(ggplot2)
+
+ggplot(ucb, aes(x = Dept, y = pred_prob, color = Gender)) +
+  geom_point(size = 3) +
+  labs(y = "Predicted Probability of Admission")
+```
