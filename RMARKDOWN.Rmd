@@ -1,0 +1,36 @@
+```yaml
+---
+title: "Multiple Binary Logistic Regression"
+author: "Izan Khan"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  pdf_document:
+    number_sections: true
+    toc: true
+    fontsize: 11pt
+    geometry: margin=1in
+---
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This markdown file utilizes multiple binary logistic regression, using "rejected" as a reference angle
+
+```{r data, include=FALSE}
+# Load data
+ucb <- as.data.frame(UCBAdmissions)
+head(ucb)
+```
+
+## Estimate odds ratio and 95% confidence interval for predictor variables, relative to the reference variable ("Rejected")
+
+```{r logistic}
+# Example: Multiple Binary Logistic Regression
+model1 <- glm(Admit ~ Gender + Dept, family = binomial, data = ucb, weights = Freq)
+summary(model1)
+exp(cbind(OR = coef(model1), confint.default(model1)))
+```
